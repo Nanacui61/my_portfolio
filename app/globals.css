@@ -1,26 +1,169 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-bg: #f9f8f5;
+  --color-ink: #1a1a1a;
+  --color-muted: #999999;
+  --color-border: #e8e6e1;
+  --color-accent: #0047ff;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: disc;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f9f8f5;
+  color: #1a1a1a;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Layout ─────────────────────────────────────────────── */
+
+.container {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 56px;
+  padding-right: 56px;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* ─── Breathing animation ─────────────────────────────────── */
+
+@keyframes breathe {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.55; transform: scale(0.97); }
+}
+
+.breathe {
+  animation: breathe 3s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* ─── Nav links ───────────────────────────────────────────── */
+
+.nav-link {
+  transition: opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-link:hover {
+  opacity: 0.55;
+}
+
+/* ─── Spring row (project list) ───────────────────────────── */
+
+.spring-row {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.spring-row:hover {
+  transform: translateX(8px);
+}
+
+.spring-row .project-title {
+  transition: color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.spring-row:hover .project-title {
+  color: #0047ff;
+}
+
+.arrow-nudge {
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.spring-row:hover .arrow-nudge {
+  transform: translateX(4px);
+}
+
+/* ─── Photo card ──────────────────────────────────────────── */
+
+.photo-card {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.photo-card:hover {
+  transform: translateY(-6px);
+}
+
+/* ─── Footer links ────────────────────────────────────────── */
+
+.footer-link {
+  text-decoration: none;
+  color: #1a1a1a;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+  transition: border-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.footer-link:hover {
+  border-bottom-color: #1a1a1a;
+}
+
+/* ─── Responsive grids ────────────────────────────────────── */
+
+.about-main-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+.label-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.work-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+@media (min-width: 768px) {
+  .about-main-grid {
+    grid-template-columns: 1fr 300px;
+    gap: 72px;
+  }
+
+  .label-content-grid {
+    grid-template-columns: 160px 1fr;
+    gap: 48px;
+  }
+
+  .work-detail-grid {
+    grid-template-columns: 1fr 260px;
+    gap: 56px;
+  }
 }
