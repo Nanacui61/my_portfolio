@@ -36,7 +36,7 @@ export default function Footer() {
             yqcui@bu.edu
           </a>
           <a
-            href="https://linkedin.com/in/yuqian-cui"
+            href="https://www.linkedin.com/in/yuqian-cui-nana"
             target="_blank"
             rel="noopener noreferrer"
             className="footer-link"

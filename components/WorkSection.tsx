@@ -48,11 +48,13 @@ export default function WorkSection() {
   const spring = "cubic-bezier(0.34, 1.56, 0.64, 1)";
 
   function rowStyle(globalIdx: number): React.CSSProperties {
-    return {
-      opacity: entered ? 1 : 0,
-      transform: entered ? "none" : "translateY(14px)",
-      transition: `opacity 0.5s ${spring} ${globalIdx * 90}ms, transform 0.5s ${spring} ${globalIdx * 90}ms`,
-    };
+    const delay = `${globalIdx * 90}ms`;
+    const t = `opacity 0.5s ${spring} ${delay}, transform 0.5s ${spring} ${delay}`;
+    if (entered) {
+      // No inline transform — lets the CSS .spring-row:hover take over
+      return { opacity: 1, transition: t };
+    }
+    return { opacity: 0, transform: "translateY(14px)", transition: t };
   }
 
   function renderRow(project: Project, localIdx: number, startIdx: number, isLastInGroup: boolean) {
