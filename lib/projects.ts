@@ -88,7 +88,7 @@ export const projects = [
     role: "Personal project",
     company: null,
     github: "https://github.com/Nanacui61/Entity-Hunt",
-    live: null,
+    live: "https://entity-hunt.vercel.app/",
     private: false,
     featured: false,
     overview:
